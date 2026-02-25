@@ -11,45 +11,64 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock, Send, ChevronRight, MessageCircle } from "lucide-react";
 import { toast, Toaster } from "sonner";
-import { supabase } from "@/lib/supabase";
 
 export default function ContactPage() {
   const [formData, setFormData] = React.useState({
     name: "",
     phone: "",
-    email: "",
+   
+    project: "",
     message: "",
   });
   const [submitting, setSubmitting] = React.useState(false);
+ 
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setSubmitting(true);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.name || !formData.phone) {
-      toast.error("Please fill in required fields");
-      return;
-    }
+  // Store reference before any async work
+  const form = e.currentTarget;
 
-    setSubmitting(true);
-
-    const { error } = await supabase.from("inquiries").insert([{
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      message: formData.message,
-      status: "new"
-    }]);
-
-    if (error) {
-      toast.error("Failed to submit. Please try again.");
-    } else {
-      toast.success("Thank you! We'll contact you shortly.");
-      setFormData({ name: "", phone: "", email: "", message: "" });
-    }
-
-    setSubmitting(false);
+  const data = {
+    name: formData.name,
+    phone: formData.phone,
+    project: formData.project,
+    message: formData.message,
   };
 
+  try {
+    const response = await fetch("/api/inquiry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result?.error || "Failed");
+    }
+
+    toast.success("Inquiry sent successfully!");
+
+    form.reset(); // Use stored reference
+
+    setFormData({
+      name: "",
+      phone: "",
+      project: "",
+      message: "",
+    });
+
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to send inquiry");
+  } finally {
+    setSubmitting(false);
+  }
+};
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -131,54 +150,93 @@ export default function ContactPage() {
               <p className="text-gray-500 mb-8">Fill out the form and our team will get back to you within 24 hours.</p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700">Full Name *</label>
-                    <Input
-                      placeholder="John Doe"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="h-14 rounded-xl bg-gray-50 border-0 focus:ring-2 focus:ring-amber-500"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700">Phone Number *</label>
-                    <Input
-                      placeholder="+91 00000 00000"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="h-14 rounded-xl bg-gray-50 border-0 focus:ring-2 focus:ring-amber-500"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-700">Email Address</label>
-                  <Input
-                    type="email"
-                    placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="h-14 rounded-xl bg-gray-50 border-0 focus:ring-2 focus:ring-amber-500"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-700">Your Message</label>
-                  <Textarea
-                    placeholder="I'm interested in..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="min-h-[150px] rounded-xl bg-gray-50 border-0 focus:ring-2 focus:ring-amber-500"
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full h-16 rounded-full bg-amber-500 hover:bg-amber-600 text-black font-bold text-lg"
-                >
-                  {submitting ? "Sending..." : "Send Message"}
-                  <Send className="ml-2 h-5 w-5" />
-                </Button>
-              </form>
+
+  <div className="grid md:grid-cols-2 gap-6">
+
+    {/* NAME */}
+    <div className="space-y-2">
+      <label className="text-sm font-semibold text-gray-700">
+        Full Name *
+      </label>
+
+      <Input
+        name="name"
+        required
+        placeholder="John Doe"
+        value={formData.name}
+        onChange={(e) =>
+          setFormData({ ...formData, name: e.target.value })
+        }
+        className="h-14 rounded-xl bg-gray-50 border-0 focus:ring-2 focus:ring-amber-500"
+      />
+    </div>
+
+    {/* PHONE */}
+    <div className="space-y-2">
+      <label className="text-sm font-semibold text-gray-700">
+        Phone Number *
+      </label>
+
+      <Input
+        name="phone"
+        required
+        placeholder="+91 00000 00000"
+        value={formData.phone}
+        onChange={(e) =>
+          setFormData({ ...formData, phone: e.target.value })
+        }
+        className="h-14 rounded-xl bg-gray-50 border-0 focus:ring-2 focus:ring-amber-500"
+      />
+    </div>
+
+  </div>
+
+  {/* PROJECT */}
+  <div className="space-y-2">
+    <label className="text-sm font-semibold text-gray-700">
+      Interest
+    </label>
+
+    <Input
+      name="project"
+      placeholder="E.g. Spark Vision Plot"
+      value={formData.project}
+      onChange={(e) =>
+        setFormData({ ...formData, project: e.target.value })
+      }
+      className="h-14 rounded-xl bg-gray-50 border-0 focus:ring-2 focus:ring-amber-500"
+    />
+  </div>
+
+  {/* MESSAGE */}
+  <div className="space-y-2">
+    <label className="text-sm font-semibold text-gray-700">
+      Your Message
+    </label>
+
+    <Textarea
+      name="message"
+      required
+      placeholder="I'm interested in..."
+      value={formData.message}
+      onChange={(e) =>
+        setFormData({ ...formData, message: e.target.value })
+      }
+      className="min-h-[150px] rounded-xl bg-gray-50 border-0 focus:ring-2 focus:ring-amber-500"
+    />
+  </div>
+
+  {/* SUBMIT */}
+  <Button
+    type="submit"
+    disabled={submitting}
+    className="w-full h-16 rounded-full bg-amber-500 hover:bg-amber-600 text-black font-bold text-lg"
+  >
+    {submitting ? "Sending..." : "Send Message"}
+    <Send className="ml-2 h-5 w-5" />
+  </Button>
+
+</form>
             </motion.div>
 
             {/* Office Info */}

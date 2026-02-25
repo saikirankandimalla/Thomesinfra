@@ -81,7 +81,7 @@ export function TrustBadges() {
           fill
           className="
             object-contain
-            opacity-70
+            opacity-100
             group-hover:opacity-100
             transition-all duration-300
           "

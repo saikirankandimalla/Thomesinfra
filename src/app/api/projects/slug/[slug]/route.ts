@@ -6,15 +6,33 @@ export async function GET(
   request: Request,
   { params }: { params: { slug: string } }
 ) {
+
   try {
-    const { slug } = await params;
+
     await connectDB();
-    const project = await Project.findOne({ slug });
+
+    const project = await Project.findOne({
+      slug: params.slug,
+    });
+
     if (!project) {
-      return NextResponse.json({ error: "Project not found" }, { status: 404 });
+
+      return NextResponse.json(
+        { error: "Project not found" },
+        { status: 404 }
+      );
+
     }
+
     return NextResponse.json(project);
+
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+
+    return NextResponse.json(
+      { error: error.message },
+      { status: 500 }
+    );
+
   }
+
 }

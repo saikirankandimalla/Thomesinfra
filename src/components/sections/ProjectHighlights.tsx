@@ -16,7 +16,7 @@ const stats = [
   { label: "Success Rate", value: "100%", icon: Star },
 ];
 
-const mainHighlights = [
+const defaultHighlights = [
   {
     title: "Clear Title & Spot Registration",
     description: "Legal verification and immediate ownership transfer process.",
@@ -39,7 +39,41 @@ const mainHighlights = [
   },
 ];
 
-export function ProjectHighlights() {
+const defaultInfraFeatures = [
+  "Modern Underground Drainage System",
+  "Dedicated Electricity with Transformer",
+  "Overhead Water Tank with Pipeline",
+  "Avenue Plantation & Beautiful Parks",
+  "Children's Play Area & Walking Tracks",
+  "40' & 33' Wide Internal CC Roads",
+  "Street Lighting for all Internal Roads",
+];
+
+// Assign icons to dynamic highlights in rotation
+const highlightIcons = [FileCheck, ShieldCheck, BadgeCheck, MapIcon, Building2, Landmark, Award];
+
+interface ProjectHighlightsProps {
+  highlights?: string[];
+}
+
+export function ProjectHighlights({ highlights }: ProjectHighlightsProps) {
+  // If highlights from DB exist and are non-empty, split them:
+  // First 4 → left card grid, rest → right infra list
+  // If fewer than 4, pad with defaults for cards
+  const hasHighlights = highlights && highlights.length > 0;
+
+  // const cardHighlights = hasHighlights
+  //   ? highlights.slice(0, 4).map((title, i) => ({
+  //       title,
+  //       description: "", // no description from DB, just title
+  //       icon: highlightIcons[i % highlightIcons.length],
+  //     }))
+  //   : defaultHighlights;
+
+  const infraFeatures = hasHighlights 
+    ? highlights
+    : defaultInfraFeatures;
+
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       {/* Background accents */}
@@ -47,26 +81,6 @@ export function ProjectHighlights() {
       <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-blue-50 rounded-full blur-[100px] -z-10 opacity-50" />
 
       <div className="container mx-auto px-4">
-        {/* Trust Stats Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="text-center group"
-            >
-              <div className="h-16 w-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-100 transition-colors">
-                <stat.icon className="h-8 w-8 text-amber-600" />
-              </div>
-              <div className="text-4xl font-black text-gray-900 mb-1">{stat.value}</div>
-              <div className="text-gray-500 font-semibold uppercase tracking-wider text-xs">{stat.label}</div>
-            </motion.div>
-          ))}
-        </div>
-
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           {/* Left: Highlight Cards */}
           <div className="lg:w-1/2">
@@ -87,7 +101,7 @@ export function ProjectHighlights() {
             </motion.h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {mainHighlights.map((item, index) => (
+              {defaultHighlights.map((item, index) => (
                 <motion.div
                   key={item.title}
                   initial={{ opacity: 0, x: -20 }}
@@ -100,9 +114,9 @@ export function ProjectHighlights() {
                     <item.icon className="h-6 w-6 text-amber-500 group-hover:text-white" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
+                  {item.description && (
+                    <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -113,19 +127,11 @@ export function ProjectHighlights() {
             <div className="absolute top-0 right-0 p-8 opacity-10">
               <Building2 size={200} />
             </div>
-            
+
             <h3 className="text-3xl font-black mb-8 relative z-10">Premium Project Infrastructure</h3>
-            
+
             <div className="space-y-6 relative z-10">
-              {[
-                "Modern Underground Drainage System",
-                "Dedicated Electricity with Transformer",
-                "Overhead Water Tank with Pipeline",
-                "Avenue Plantation & Beautiful Parks",
-                "Children's Play Area & Walking Tracks",
-                "40' & 33' Wide Internal CC Roads",
-                "Street Lighting for all Internal Roads"
-              ].map((feature, index) => (
+              {infraFeatures.map((feature, index) => (
                 <motion.div
                   key={feature}
                   initial={{ opacity: 0, x: 20 }}

@@ -1,32 +1,34 @@
 {
   "India": {
       "Telangana": [
-      { "name": "th-10-avp-bahupeta-dtcp", "slug": "th-10-avp-bahupeta-dtcp", "status":"Ongoing" },
-      {"name": "th-15-avp-cholleru-phase-1&2-dtcp", "slug": "th-15-avp-cholleru-phase-1&2-dtcp", "status":"Ongoing" },
+      {"name": "Trio Gold", "slug": "trio-gold-", "status":"Ongoing"},
+      {"name":"Tri Disha","slug":"trio-disha", "status":"Ongoing"},
+      {"name": "AVP- NATURE COUNTY-PEDDAKANDUKUR-DTCP", "slug":"TH-21 AVP- NATURE COUNTY-PEDDAKANDUKUR-DTCP", "status":"Ongoing"},
+      {"name": "Spark Vision", "slug": "spark-vision", "status":"Ongoing"},
+      { "name": "AVP-bahupeta-dtcp", "slug": "th-10-avp-bahupeta-dtcp", "status":"Ongoing" },
+      {"name": "AVP-cholleru-phase-1&2-dtcp", "slug": "th-15-avp-cholleru-phase-1&2-dtcp", "status":"Ongoing" },
+       {"name": "AVP-VILLAGE VIBE RESORT CHOLLERU-DTCP", "slug":"TH-20 AVP-VILLAGE VIBE RESORT CHOLLERU-DTCP", "status":"Ongoing"},
       {"name": "Valley View", "slug": "valley-view", "status":"Ongoing"},
       {"name": "Spark City", "slug": "spark-city", "status":"Ongoing"},
-      {"name": "Spark Vision", "slug": "spark-vision", "status":"Ongoing"},
-      {"name": "TH-20 AVP-VILLAGE VIBE RESORT CHOLLERU-DTCP", "slug":"TH-20 AVP-VILLAGE VIBE RESORT CHOLLERU-DTCP", "status":"Ongoing"},
-      {"name": "TH-21 AVP- NATURE COUNTY-PEDDAKANDUKUR-DTCP", "slug":"TH-21 AVP- NATURE COUNTY-PEDDAKANDUKUR-DTCP", "status":"Ongoing"},
-      {"name": "Trio Gold", "slug": "trio-gold-", "status":"Ongoing"},
-      {"name":"Trio Disha","slug":"trio-disha", "status":"Ongoing"},
+      
+     
 
     
-      {"name": "TH-01. HMDA- STAR CITY – BHONGIR-DTCP", "slug":"th-01.-hmda--star-city-–-bhongir-dtcp", "status":"Completed"},
-      {"name": "TH-02. DTCP CHINNAKANDUKURU – STAR CITY – 4", "slug":"-th-02.-dtcp-chinnakandukuru-–-star-city-–-4","status":"Completed"},
-      {"name": "TH-03. Star City @ RAJAPETA", "slug":"th-03.-star-city-@-rajapeta", "status":"Completed"},
-      {"name": "TH-04. Star City @ Renikunta", "slug":"th-04.-star-city-@-renikunta", "status":"Completed"},
-      {"name": "TH-05. FARM EDIFICE @ KUNOOR", "slug":"th-05.-farm-edifice-@-kunoorr", "status":"Completed"},
-      {"name": "TH-06. FARM LAND @KUNOOR", "slug":"-th-06.-farm-land-@kunoor", "status":"Completed"},
-      {"name": "TH-07. RAIGIRI PHASE I – YTDA", "slug":"th-07.-raigiri-phase-i-–-ytda", "status":"Completed"},
+      {"name": "STAR CITY – BHONGIR-DTCP", "slug":"th-01.-hmda--star-city-–-bhongir-dtcp", "status":"Completed"},
+      {"name": "CHINNAKANDUKURU – STAR CITY", "slug":"-th-02.-dtcp-chinnakandukuru-–-star-city-–-4","status":"Completed"},
+      {"name": "Star City @ RAJAPETA", "slug":"th-03.-star-city-@-rajapeta", "status":"Completed"},
+      {"name": "Star City @ Renikunta", "slug":"th-04.-star-city-@-renikunta", "status":"Completed"},
+      {"name": "FARM EDIFICE @ KUNOOR", "slug":"th-05.-farm-edifice-@-kunoorr", "status":"Completed"},
+      {"name": "FARM LAND @KUNOOR", "slug":"-th-06.-farm-land-@kunoor", "status":"Completed"},
+      {"name": "RAIGIRI PHASE I", "slug":"th-07.-raigiri-phase-i-–-ytda", "status":"Completed"},
       {"name": "Yadadri Icon", "slug":"yadadri", "status":"Completed"},
-      {"name": "TH-09. WANGAPALLY DTCP PHASE I", "slug":"TH-09. WANGAPALLY DTCP PHASE I", "status":"Completed"},
-      {"name": "TH-11. HMDA – BUDDHA HILLS", "slug":"TH-11. HMDA – BUDDHA HILLS", "status":"Completed"},
-      {"name": "TH-12 ALA VAIKUNTHAPURAM – YELLAKONDA-DTCP", "slug":"TH-12 ALA VAIKUNTHAPURAM – YELLAKONDA-DTCP", "status":"Completed"},
-      {"name": "TH-13 AVP @ KONDURG", "slug":"TH-13 AVP @ KONDURG", "status":"Completed"}
+      {"name": "WANGAPALLY PHASE I", "slug":"TH-09. WANGAPALLY DTCP PHASE I", "status":"Completed"},
+      {"name": "BUDDHA HILLS", "slug":"TH-11. HMDA – BUDDHA HILLS", "status":"Completed"},
+      {"name": "ALA VAIKUNTHAPURAM – YELLAKONDA", "slug":"TH-12 ALA VAIKUNTHAPURAM – YELLAKONDA-DTCP", "status":"Completed"},
+      {"name": "AVP KONDURG", "slug":"TH-13 AVP @ KONDURG", "status":"Completed"}
     ],
     "Gujarat": [
-        {"name": "TH-22- VISIONARYVISTA-DHOLERA SMART CITY", "slug":"TH-22- VISIONARYVISTA-DHOLERA SMART CITY", "status":"Ongoing"}
+        {"name": "VISIONARYVISTA-DHOLERA SMART CITY", "slug":"TH-22- VISIONARYVISTA-DHOLERA SMART CITY", "status":"Ongoing"}
      
     ]
   
