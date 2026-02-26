@@ -2,27 +2,27 @@
   "India": {
     "Telangana": [
       {"name": "Trio Gold", "slug": "trio-gold-", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2026/02/brochure-3-scaled.png"},
-      {"name": "Tri Disha", "slug": "tri-disha", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=200&q=80"},
-      {"name": "AVP-Nature County", "slug": "TH-21 AVP- NATURE COUNTY-PEDDAKANDUKUR-DTCP", "status": "Ongoing", "location": "Peddakandukur, Telangana", "image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=200&q=80"},
-      {"name": "Spark Vision", "slug": "spark-vision", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=200&q=80"},
-      {"name": "AVP-Bahupeta", "slug": "th-10-avp-bahupeta-dtcp", "status": "Ongoing", "location": "Bahupeta, Telangana", "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=200&q=80"},
-      {"name": "AVP-Cholleru", "slug": "th-15-avp-cholleru-phase-1&2-dtcp", "status": "Ongoing", "location": "Cholleru, Telangana", "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=80"},
-      {"name": "AVP-Village Vibe Resort", "slug": "TH-20 AVP-VILLAGE VIBE RESORT CHOLLERU-DTCP", "status": "Ongoing", "location": "Cholleru, Telangana", "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=200&q=80"},
+      {"name": "Tri Disha", "slug": "tri-disha", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://images.pexels.com/photos/7031607/pexels-photo-7031607.jpeg"},
+      {"name": "Nature County", "slug": "TH-21 AVP- NATURE COUNTY-PEDDAKANDUKUR-DTCP", "status": "Ongoing", "location": "Peddakandukur, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2024/12/DJI_0083-copy-scaled.jpg"},
+      {"name": "Spark Vision", "slug": "spark-vision", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2025/11/DJI_0258-1024x683.jpg"},
+      {"name": "Bahupeta", "slug": "th-10-avp-bahupeta-dtcp", "status": "Ongoing", "location": "Bahupeta, Telangana", "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=200&q=80"},
+      {"name": "Cholleru", "slug": "th-15-avp-cholleru-phase-1&2-dtcp", "status": "Ongoing", "location": "Cholleru, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/DSC02217.jpg"},
+      {"name": "Village Vibe Resort", "slug": "TH-20 AVP-VILLAGE VIBE RESORT CHOLLERU-DTCP", "status": "Ongoing", "location": "Cholleru, Telangana", "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=200&q=80"},
       {"name": "Valley View", "slug": "valley-view", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=200&q=80"},
       {"name": "Spark City", "slug": "spark-city", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=200&q=80"},
 
       {"name": "Star City", "slug": "th-01.-hmda--star-city-–-bhongir-dtcp", "status": "Completed", "location": "Bhongir, Telangana", "image": "https://images.unsplash.com/photo-1494526585095-c41746248156?w=200&q=80"},
       {"name": "Star City ", "slug": "-th-02.-dtcp-chinnakandukuru-–-star-city-–-4", "status": "Completed", "location": "Chinnakandukuru, Telangana", "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=200&q=80"},
       {"name": "Star City", "slug": "th-03.-star-city-@-rajapeta", "status": "Completed", "location": "Rajapeta, Telangana", "image": "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=200&q=80"},
-      {"name": "Star City", "slug": "th-04.-star-city-@-renikunta", "status": "Completed", "location": "Renikunta, Telangana", "image": "https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?w=200&q=80"},
-      {"name": "Farm Edifice", "slug": "th-05.-farm-edifice-@-kunoorr", "status": "Completed", "location": "Kunoor, Telangana", "image": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=200&q=80"},
-      {"name": "Farm Land", "slug": "-th-06.-farm-land-@kunoor", "status": "Completed", "location": "Kunoor, Telangana", "image": "https://images.unsplash.com/photo-1475087542963-13ab5e611954?w=200&q=80"},
-      {"name": "Raigiri PH-I", "slug": "th-07.-raigiri-phase-i-–-ytda", "status": "Completed", "location": "Raigiri, Telangana", "image": "https://images.unsplash.com/photo-1525438160292-a4a860951216?w=200&q=80"},
+      {"name": "Star City", "slug": "th-04.-star-city-@-renikunta", "status": "Completed", "location": "Renikunta, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2024/07/WhatsAppImage2024-07-09at1.57.47PM2-1024x768.jpeg"},
+      {"name": "Farm Edifice", "slug": "th-05.-farm-edifice-@-kunoorr", "status": "Completed", "location": "Kunoor, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/WhatsApp-Image-2023-11-03-at-4.12.47-PM.jpeg"},
+      {"name": "Farm Land", "slug": "-th-06.-farm-land-@kunoor", "status": "Completed", "location": "Kunoor, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/WhatsApp-Image-2023-11-03-at-3.50.22-PM.jpeg"},
+      {"name": "Raigiri PH-I", "slug": "th-07.-raigiri-phase-i-–-ytda", "status": "Completed", "location": "Raigiri, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/TH-07-LOCATION-350x420.jpeg"},
       {"name": "Yadadri Icon", "slug": "yadadri", "status": "Completed", "location": "Yadadri, Telangana", "image": "https://images.unsplash.com/photo-1504615755583-2916b52192a3?w=200&q=80"},
-      {"name": "Wangapalli PH-I", "slug": "TH-09. WANGAPALLY DTCP PHASE I", "status": "Completed", "location": "Wangapally, Telangana", "image": "https://images.unsplash.com/photo-1472224371017-08207f84aaae?w=200&q=80"},
-      {"name": "Buddha Hills", "slug": "TH-11. HMDA – BUDDHA HILLS", "status": "Completed", "location": "Hyderabad, Telangana", "image": "https://images.unsplash.com/photo-1543489822-c49534f3271f?w=200&q=80"},
-      {"name": "Ala Vaikuntapuram", "slug": "TH-12 ALA VAIKUNTHAPURAM – YELLAKONDA-DTCP", "status": "Completed", "location": "Yellakonda, Telangana", "image": "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?w=200&q=80"},
-      {"name": "Ala Vaikuntapuram", "slug": "TH-13 AVP @ KONDURG", "status": "Completed", "location": "Kondurg, Telangana", "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=200&q=80"}
+      {"name": "Wangapalli PH-I", "slug": "TH-09. WANGAPALLY DTCP PHASE I", "status": "Completed", "location": "Wangapally, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/WhatsApp-Image-2023-11-03-at-4.31.45-PM.jpeg"},
+      {"name": "Buddha Hills", "slug": "TH-11. HMDA – BUDDHA HILLS", "status": "Completed", "location": "Hyderabad, Telangana", "image": "https://images.pexels.com/photos/164522/pexels-photo-164522.jpeg"},
+      {"name": "Ala Vaikuntapuram", "slug": "TH-12 ALA VAIKUNTHAPURAM – YELLAKONDA-DTCP", "status": "Completed", "location": "Yellakonda, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/DJI_0413.jpg"},
+      {"name": "Ala Vaikuntapuram", "slug": "TH-13 AVP @ KONDURG", "status": "Completed", "location": "Kondurg, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/Kondurg-1-964-X-545.jpg"}
     ],
     "Gujarat": [
       {"name": "Visionary Vista", "slug": "TH-22- VISIONARYVISTA-DHOLERA SMART CITY", "status": "Ongoing", "location": "Dholera, Gujarat", "image": "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=200&q=80"}

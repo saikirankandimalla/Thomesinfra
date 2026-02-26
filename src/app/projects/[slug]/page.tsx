@@ -1139,10 +1139,10 @@ const projectImages: Record<string, string[]> = {
     "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1600",
   ],
   default: [
-    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1600",
-    "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=1600",
-    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1600",
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1600",
+    "https://thomesinfra.com/wp-content/uploads/2024/05/DJI_0732-2-1-scaled.jpg",
+    "https://thomesinfra.com/wp-content/uploads/2024/05/DJI_0674-2-1-scaled.jpg",
+    "https://thomesinfra.com/wp-content/uploads/2024/05/DJI_0744-scaled.jpg",
+    "https://thomesinfra.com/wp-content/uploads/2024/05/DJI_0874-1.jpg",
   ],
 };
 
@@ -1284,9 +1284,8 @@ function StatsSection({ project, onScrollToMap }: { project: IProject; onScrollT
               {project.layout_image ? (
                 <NextImage src={project.layout_image} alt="Layout" fill className="object-cover" />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-[#3b3b98]/20 to-amber-100 flex items-center justify-center">
-                  <Building2 className="h-20 w-20 text-[#3b3b98]/30" />
-                </div>
+                <NextImage src="https://thomesinfra.com/wp-content/uploads/2023/11/DJI_0474.jpg"alt="Layout" fill className="object-cover" />
+      
               )}
             </div>
             <div className="absolute -bottom-4 -right-2 md:-bottom-5 md:-right-5 bg-white rounded-2xl px-4 md:px-5 py-2 md:py-3 shadow-[0_10px_30px_rgba(0,0,0,0.2)] border border-gray-100 flex items-center gap-2 md:gap-3 z-10">
@@ -1392,7 +1391,7 @@ const coords = extractLatLng(project.google_embed_url);
 
 const directionsUrl = coords
   ? `https://www.google.com/maps/dir/?api=1&destination=${coords.lat},${coords.lng}`
-  : "#";
+  : "https://www.google.com/maps/dir//T+HOMES+INFRA+PRIVATE+LIMITED,+Flat+No+:+8-2-120%2F77%2F4B,+3rd+floor,+NVR+Towers,+Road+No.+2,+opp.+NTR+Memorial+Trust+Blood+Bank,+Banjara+Hills,+Hyderabad,+Telangana+500034/@17.4242362,78.4255312,669m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x3bcb9737e4038e9f:0xcb609b5821acadb1!2m2!1d78.4255312!2d17.4242362?entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D";
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
@@ -1429,8 +1428,19 @@ const directionsUrl = coords
               {project.google_embed_url ? (
                 <div className="w-full h-full [&_iframe]:w-full [&_iframe]:h-full [&_iframe]:border-0" dangerouslySetInnerHTML={{ __html: project.google_embed_url }} />
               ) : (
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400 font-semibold">Map not available</div>
-              )}
+               <div
+  className="w-full h-full [&_iframe]:w-full [&_iframe]:h-full [&_iframe]:border-0"
+  dangerouslySetInnerHTML={{
+    __html: `
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2731.138050523078!2d78.4255312!3d17.4242362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9737e4038e9f%3A0xcb609b5821acadb1!2sT%20HOMES%20INFRA%20PRIVATE%20LIMITED!5e1!3m2!1sen!2sin!4v1772110980620!5m2!1sen!2sin"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    `,
+  }}
+/>          )}
             </div>
             <div className="mt-4 flex justify-end">
              <Link href={directionsUrl} target="_blank">
