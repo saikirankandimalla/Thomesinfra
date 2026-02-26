@@ -13,6 +13,8 @@ type Project = {
   slug?: string;
   status?: string;
   externalLink?: string;
+  location?: string;
+  image?: string;
 };
 
 type ProjectsData = {
@@ -38,6 +40,86 @@ function getProjectsByCountry(country: string): Project[] {
   return Object.values(data).flat();
 }
 
+function StatusBadge({ status, external }: { status?: string; external?: boolean }) {
+  if (external)
+    return (
+      <span className="shrink-0 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+        ↗ Visit
+      </span>
+    );
+  if (status === "Ongoing")
+    return (
+      <span className="shrink-0 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-green-100 text-green-700">
+        Ongoing
+      </span>
+    );
+  if (status === "Completed")
+    return (
+      <span className="shrink-0 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
+        Completed
+      </span>
+    );
+  return null;
+}
+
+function ProjectCard({ p, onClick }: { p: Project; onClick: () => void }) {
+  const isExternal = !!p.externalLink && !p.status;
+
+  const inner = (
+    <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-amber-50 group transition-colors cursor-pointer">
+      {/* Thumbnail */}
+      <div className="relative w-14 h-11 rounded-lg overflow-hidden shrink-0 bg-gray-100">
+        {p.image ? (
+          <Image
+            src={p.image}
+            alt={p.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-200" />
+        )}
+      </div>
+
+      {/* Text */}
+      <div className="min-w-0 flex-1">
+        <div className="text-sm font-semibold text-gray-800 group-hover:text-amber-700 truncate leading-snug">
+          {p.name}
+        </div>
+        {p.location && (
+          <div className="text-xs text-gray-400 mt-0.5 truncate">{p.location}</div>
+        )}
+      </div>
+
+      {/* Badge */}
+      <StatusBadge status={p.status} external={isExternal} />
+    </div>
+  );
+
+  if (p.externalLink) {
+    return (
+      <a href={p.externalLink} target="_blank" rel="noopener noreferrer" onClick={onClick}>
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={`/projects/${p.slug}`} onClick={onClick}>
+      {inner}
+    </Link>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-2 px-1 mb-1.5 mt-3 first:mt-0">
+      <span className="font-bold text-[10px] uppercase tracking-widest text-gray-400">{children}</span>
+      <div className="flex-1 h-px bg-gray-100" />
+    </div>
+  );
+}
+
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
@@ -45,7 +127,6 @@ export function Navbar() {
   const [searchDesktop, setSearchDesktop] = React.useState("");
   const [searchMobile, setSearchMobile] = React.useState("");
 
-  // Use a ref to track hover timeout so we can cancel it
   const closeTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleMouseEnter = (name: string) => {
@@ -53,14 +134,10 @@ export function Navbar() {
     setActiveDropdown(name);
   };
 
-  // Small delay before closing so the mouse can travel from button → dropdown
   const handleMouseLeave = () => {
-    closeTimer.current = setTimeout(() => {
-      setActiveDropdown(null);
-    }, 80);
+    closeTimer.current = setTimeout(() => setActiveDropdown(null), 80);
   };
 
-  // close on ESC
   React.useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") setActiveDropdown(null);
@@ -91,13 +168,12 @@ export function Navbar() {
           {/* DESKTOP NAV */}
           <nav className="hidden lg:flex gap-8 items-center">
             {navLinks.map((link) => {
-
               if (!link.hasDropdown)
                 return (
                   <Link
                     key={link.name}
                     href={link.href!}
-                    className="font-semibold text-gray-700 hover:text-amber-600"
+                    className="font-semibold text-gray-700 hover:text-amber-600 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -109,24 +185,16 @@ export function Navbar() {
               );
               const ongoing = filtered.filter((p) => p.status === "Ongoing");
               const completed = filtered.filter((p) => p.status === "Completed");
-              const external = filtered.filter((p) => p.externalLink);
+              const external = filtered.filter((p) => p.externalLink && !p.status);
 
               return (
-                /*
-                 * KEY FIX: The entire wrapper (button + dropdown) shares
-                 * onMouseEnter / onMouseLeave with a small close-delay.
-                 * This means moving from the button into the panel never
-                 * triggers a close, and moving out of the panel does close it.
-                 */
                 <div
                   key={link.name}
                   className="relative"
                   onMouseEnter={() => handleMouseEnter(link.name)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <button
-                    className="flex items-center gap-1 font-semibold text-gray-700 hover:text-amber-600 py-2"
-                  >
+                  <button className="flex items-center gap-1 font-semibold text-gray-700 hover:text-amber-600 py-2 transition-colors">
                     {link.name}
                     <ChevronDown
                       size={16}
@@ -141,115 +209,58 @@ export function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.15 }}
-                        /*
-                         * pt-2 creates an invisible hover bridge between
-                         * the button bottom and the panel top — the mouse
-                         * stays inside the wrapper div during this gap.
-                         */
-                        className="absolute left-1/2 -translate-x-1/2 pt-2 w-[660px]"
+                        className="absolute left-1/2 -translate-x-1/2 pt-2 w-[500px]"
                         style={{ top: "100%" }}
                       >
-                        <div className="bg-white shadow-2xl border border-gray-100 rounded-2xl p-5">
+                        <div className="bg-white shadow-2xl border border-gray-100 rounded-2xl overflow-hidden">
 
-                          {/* SEARCH */}
-                          <input
-                            value={searchDesktop}
-                            onChange={(e) => setSearchDesktop(e.target.value)}
-                            placeholder="Search projects..."
-                            className="border px-4 py-2 rounded-lg w-full mb-4 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
-                          />
+                          {/* SEARCH — sticky at top */}
+                          <div className="px-4 pt-4 pb-3 border-b border-gray-100">
+                            <input
+                              value={searchDesktop}
+                              onChange={(e) => setSearchDesktop(e.target.value)}
+                              placeholder="Search projects or locations..."
+                              className="border border-gray-200 bg-gray-50 px-4 py-2.5 rounded-xl w-full text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
+                            />
+                          </div>
 
-                          <div className="max-h-[420px] overflow-y-auto space-y-4 pr-1">
+                          {/* SCROLLABLE LIST */}
+                          <div className="max-h-[420px] overflow-y-auto px-3 py-3 space-y-0.5 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
 
-                            {/* ONGOING */}
                             {ongoing.length > 0 && (
-                              <div>
-                                <div className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-2">
-                                  Ongoing Projects
-                                </div>
-                                <div className="grid grid-cols-2 gap-1">
-                                  {ongoing.map((p) => (
-                                    <Link
-                                      key={p.name}
-                                      href={`/projects/${p.slug}`}
-                                      onClick={() => setActiveDropdown(null)}
-                                      className="flex items-center justify-between px-3 py-2 hover:bg-amber-50 rounded-lg group"
-                                    >
-                                      <span className="text-sm text-gray-700 group-hover:text-amber-700">
-                                        {p.name}
-                                      </span>
-                                      <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full ml-2 shrink-0">
-                                        Ongoing
-                                      </span>
-                                    </Link>
-                                  ))}
-                                </div>
-                              </div>
+                              <>
+                                <SectionLabel>Ongoing Projects</SectionLabel>
+                                {ongoing.map((p) => (
+                                  <ProjectCard key={p.name} p={p} onClick={() => setActiveDropdown(null)} />
+                                ))}
+                              </>
                             )}
 
-                            {/* COMPLETED */}
                             {completed.length > 0 && (
-                              <div>
-                                <div className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-2">
-                                  Completed Projects
-                                </div>
-                                <div className="grid grid-cols-2 gap-1">
-                                  {completed.map((p) => (
-                                    <Link
-                                      key={p.name}
-                                      href={`/projects/${p.slug}`}
-                                      onClick={() => setActiveDropdown(null)}
-                                      className="flex items-center justify-between px-3 py-2 hover:bg-gray-50 rounded-lg group"
-                                    >
-                                      <span className="text-sm text-gray-700 group-hover:text-gray-900">
-                                        {p.name}
-                                      </span>
-                                      <span className="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full ml-2 shrink-0">
-                                        Completed
-                                      </span>
-                                    </Link>
-                                  ))}
-                                </div>
-                              </div>
+                              <>
+                                <SectionLabel>Completed Projects</SectionLabel>
+                                {completed.map((p) => (
+                                  <ProjectCard key={p.name} p={p} onClick={() => setActiveDropdown(null)} />
+                                ))}
+                              </>
                             )}
 
-                            {/* DUBAI / EXTERNAL */}
                             {external.length > 0 && (
-                              <div>
-                                <div className="font-bold text-xs uppercase tracking-wider text-gray-400 mb-2">
-                                  Dubai Projects
-                                </div>
-                                <div className="grid grid-cols-2 gap-1">
-                                  {external.map((p) => (
-                                    <a
-                                      key={p.name}
-                                      href={p.externalLink}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="flex items-center justify-between px-3 py-2 hover:bg-blue-50 rounded-lg group"
-                                    >
-                                      <span className="text-sm text-gray-700 group-hover:text-blue-700">
-                                        {p.name}
-                                      </span>
-                                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full ml-2 shrink-0">
-                                        ↗ Visit
-                                      </span>
-                                    </a>
-                                  ))}
-                                </div>
-                              </div>
+                              <>
+                                <SectionLabel>Dubai Projects</SectionLabel>
+                                {external.map((p) => (
+                                  <ProjectCard key={p.name} p={p} onClick={() => setActiveDropdown(null)} />
+                                ))}
+                              </>
                             )}
 
                             {filtered.length === 0 && (
-                              <p className="text-sm text-gray-400 text-center py-4">
-                                No projects found.
-                              </p>
+                              <p className="text-sm text-gray-400 text-center py-8">No projects found.</p>
                             )}
-
                           </div>
 
-                          {/* FOOTER */}
-                          <div className="mt-4 pt-3 border-t flex justify-end">
+                          {/* FOOTER — sticky at bottom */}
+                          <div className="px-4 py-3 border-t border-gray-100 flex justify-end bg-gray-50/60">
                             <Link
                               href="/projects"
                               onClick={() => setActiveDropdown(null)}
@@ -282,8 +293,8 @@ export function Navbar() {
           </div>
 
           {/* MOBILE HAMBURGER */}
-          <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X /> : <Menu />}
+          <button className="lg:hidden p-1" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
@@ -294,9 +305,10 @@ export function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="lg:hidden bg-white border-t overflow-hidden"
+              transition={{ duration: 0.2 }}
+              className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
             >
-              <div className="p-4 space-y-2">
+              <div className="p-4 space-y-1">
                 {navLinks.map((link) => {
 
                   if (!link.hasDropdown)
@@ -305,7 +317,7 @@ export function Navbar() {
                         key={link.name}
                         href={link.href!}
                         onClick={() => setIsOpen(false)}
-                        className="block py-2 font-medium text-gray-700"
+                        className="block py-3 px-2 font-medium text-gray-700 border-b border-gray-100 hover:text-amber-600 transition-colors"
                       >
                         {link.name}
                       </Link>
@@ -317,87 +329,113 @@ export function Navbar() {
                   );
                   const ongoing = filtered.filter((p) => p.status === "Ongoing");
                   const completed = filtered.filter((p) => p.status === "Completed");
-                  const external = filtered.filter((p) => p.externalLink);
+                  const external = filtered.filter((p) => p.externalLink && !p.status);
                   const expanded = mobileExpanded === link.name;
 
                   return (
-                    <div key={link.name} className="border-b pb-2">
+                    <div key={link.name} className="border-b border-gray-100">
+                      {/* Accordion Header */}
                       <button
                         onClick={() => setMobileExpanded(expanded ? null : link.name)}
-                        className="flex justify-between items-center w-full py-2 font-semibold text-gray-800"
+                        className="flex justify-between items-center w-full py-3 px-2 font-semibold text-gray-800 hover:text-amber-600 transition-colors"
                       >
-                        {link.name}
-                        {expanded ? <Minus size={18} /> : <Plus size={18} />}
+                        <span>{link.name}</span>
+                        <motion.div
+                          animate={{ rotate: expanded ? 45 : 0 }}
+                          transition={{ duration: 0.15 }}
+                        >
+                          {expanded ? <Minus size={18} className="text-amber-500" /> : <Plus size={18} />}
+                        </motion.div>
                       </button>
 
-                      <AnimatePresence>
+                      <AnimatePresence initial={false}>
                         {expanded && (
                           <motion.div
+                            key="content"
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden pl-2 space-y-1"
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
                           >
-                            <input
-                              value={searchMobile}
-                              onChange={(e) => setSearchMobile(e.target.value)}
-                              placeholder="Search projects..."
-                              className="border px-3 py-2 rounded-lg w-full text-sm mb-2 mt-1"
-                            />
+                            <div className="pb-4">
+                              {/* Search */}
+                              <div className="px-2 mb-3">
+                                <input
+                                  value={searchMobile}
+                                  onChange={(e) => setSearchMobile(e.target.value)}
+                                  placeholder="Search projects..."
+                                  className="border border-gray-200 bg-gray-50 px-3 py-2.5 rounded-xl w-full text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
+                                />
+                              </div>
 
-                            {ongoing.length > 0 && (
-                              <div className="text-xs font-bold uppercase text-gray-400 mt-2 mb-1">Ongoing</div>
-                            )}
-                            {ongoing.map((p) => (
-                              <Link
-                                key={p.name}
-                                href={`/projects/${p.slug}`}
-                                onClick={() => setIsOpen(false)}
-                                className="flex justify-between py-1.5 text-sm text-gray-700 hover:text-amber-600"
-                              >
-                                <span>{p.name}</span>
-                                <span className="text-green-600 text-xs">Ongoing</span>
-                              </Link>
-                            ))}
+                              {/* Scrollable project list — fixed height on mobile */}
+                              <div className="max-h-[55vh] overflow-y-auto px-2 space-y-0.5">
 
-                            {completed.length > 0 && (
-                              <div className="text-xs font-bold uppercase text-gray-400 mt-2 mb-1">Completed</div>
-                            )}
-                            {completed.map((p) => (
-                              <Link
-                                key={p.name}
-                                href={`/projects/${p.slug}`}
-                                onClick={() => setIsOpen(false)}
-                                className="flex justify-between py-1.5 text-sm text-gray-700"
-                              >
-                                <span>{p.name}</span>
-                                <span className="text-gray-400 text-xs">Completed</span>
-                              </Link>
-                            ))}
+                                {ongoing.length > 0 && (
+                                  <>
+                                    <div className="flex items-center gap-2 py-2">
+                                      <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Ongoing</span>
+                                      <div className="flex-1 h-px bg-gray-100" />
+                                    </div>
+                                    {ongoing.map((p) => (
+                                      <MobileProjectRow
+                                        key={p.name}
+                                        p={p}
+                                        onClose={() => setIsOpen(false)}
+                                      />
+                                    ))}
+                                  </>
+                                )}
 
-                            {external.length > 0 && (
-                              <div className="text-xs font-bold uppercase text-gray-400 mt-2 mb-1">Dubai</div>
-                            )}
-                            {external.map((p) => (
-                              <a
-                                key={p.name}
-                                href={p.externalLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex justify-between py-1.5 text-sm text-gray-700 hover:text-blue-600"
-                              >
-                                <span>{p.name}</span>
-                                <span className="text-blue-500 text-xs">↗ Visit</span>
-                              </a>
-                            ))}
+                                {completed.length > 0 && (
+                                  <>
+                                    <div className="flex items-center gap-2 py-2">
+                                      <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Completed</span>
+                                      <div className="flex-1 h-px bg-gray-100" />
+                                    </div>
+                                    {completed.map((p) => (
+                                      <MobileProjectRow
+                                        key={p.name}
+                                        p={p}
+                                        onClose={() => setIsOpen(false)}
+                                      />
+                                    ))}
+                                  </>
+                                )}
 
-                            <Link
-                              href="/projects"
-                              onClick={() => setIsOpen(false)}
-                              className="block text-sm text-amber-600 font-semibold mt-2"
-                            >
-                              View All Projects →
-                            </Link>
+                                {external.length > 0 && (
+                                  <>
+                                    <div className="flex items-center gap-2 py-2">
+                                      <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Dubai</span>
+                                      <div className="flex-1 h-px bg-gray-100" />
+                                    </div>
+                                    {external.map((p) => (
+                                      <MobileProjectRow
+                                        key={p.name}
+                                        p={p}
+                                        onClose={() => setIsOpen(false)}
+                                      />
+                                    ))}
+                                  </>
+                                )}
+
+                                {filtered.length === 0 && (
+                                  <p className="text-sm text-gray-400 text-center py-6">No projects found.</p>
+                                )}
+                              </div>
+
+                              {/* View All */}
+                              <div className="px-2 pt-3 mt-2 border-t border-gray-100">
+                                <Link
+                                  href="/projects"
+                                  onClick={() => setIsOpen(false)}
+                                  className="block text-sm text-amber-600 font-semibold hover:underline"
+                                >
+                                  View All Projects →
+                                </Link>
+                              </div>
+                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -405,15 +443,17 @@ export function Navbar() {
                   );
                 })}
 
-                <a
-                  href="https://earth.google.com/earth/d/1MS-DYbZVeEuiRP8LbFLcjeS-nd0V7S2c?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="w-full bg-amber-500 hover:bg-amber-600 text-black rounded-full mt-3">
-                    View Maps
-                  </Button>
-                </a>
+                <div className="pt-3">
+                  <a
+                    href="https://earth.google.com/earth/d/1MS-DYbZVeEuiRP8LbFLcjeS-nd0V7S2c?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="w-full bg-amber-500 hover:bg-amber-600 text-black rounded-full">
+                      View Maps
+                    </Button>
+                  </a>
+                </div>
               </div>
             </motion.div>
           )}
@@ -421,5 +461,47 @@ export function Navbar() {
 
       </div>
     </header>
+  );
+}
+
+/* ── Mobile project row (defined outside Navbar to avoid re-creation) ── */
+function MobileProjectRow({ p, onClose }: { p: Project; onClose: () => void }) {
+  const isExternal = !!p.externalLink && !p.status;
+
+  const inner = (
+    <div className="flex items-center gap-3 py-2 px-2 rounded-xl hover:bg-amber-50 transition-colors group">
+      {/* Thumbnail */}
+      {p.image && (
+        <div className="relative w-12 h-9 rounded-lg overflow-hidden shrink-0">
+          <Image src={p.image} alt={p.name} fill className="object-cover" />
+        </div>
+      )}
+
+      {/* Text */}
+      <div className="flex-1 min-w-0">
+        <div className="text-sm font-semibold text-gray-800 group-hover:text-amber-700 truncate leading-snug">
+          {p.name}
+        </div>
+        {p.location && (
+          <div className="text-xs text-gray-400 mt-0.5 truncate">{p.location}</div>
+        )}
+      </div>
+
+      {/* Badge */}
+      <StatusBadge status={p.status} external={isExternal} />
+    </div>
+  );
+
+  if (p.externalLink)
+    return (
+      <a href={p.externalLink} target="_blank" rel="noopener noreferrer">
+        {inner}
+      </a>
+    );
+
+  return (
+    <Link href={`/projects/${p.slug}`} onClick={onClose}>
+      {inner}
+    </Link>
   );
 }

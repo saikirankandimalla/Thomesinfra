@@ -1060,6 +1060,15 @@ interface IProject {
   WhychooseUs: string;
   WhychooseUspoints: string[];
 }
+const extractLatLng = (iframeHtml: string) => {
+  const match = iframeHtml.match(/!2d([-.\d]+)!3d([-.\d]+)/);
+  if (!match) return null;
+  
+  const lng = match[1];
+  const lat = match[2];
+
+  return { lat, lng };
+};
 
 // ── Normalise helpers — handle every possible DB shape ────────────────────────
 function normaliseGallery(raw: any): string[] {
@@ -1067,7 +1076,7 @@ function normaliseGallery(raw: any): string[] {
   if (!raw) { console.log("[normaliseGallery] → null/undefined, return []"); return []; }
   if (!Array.isArray(raw)) { console.log("[normaliseGallery] → not an array, return []"); return []; }
   if (raw.length === 0) { console.log("[normaliseGallery] → empty array, return []"); return []; }
-
+ 
   const first = raw[0];
   console.log("[normaliseGallery] first element type:", typeof first, "value:", first);
 
@@ -1379,7 +1388,11 @@ function ExploreLayoutSection({ project }: { project: IProject }) {
     message: `interested in ${project.name} located at ${project.location}. Please provide more details.`,
   });
   const [submitting, setSubmitting] = useState(false);
+const coords = extractLatLng(project.google_embed_url);
 
+const directionsUrl = coords
+  ? `https://www.google.com/maps/dir/?api=1&destination=${coords.lat},${coords.lng}`
+  : "#";
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
@@ -1420,11 +1433,12 @@ function ExploreLayoutSection({ project }: { project: IProject }) {
               )}
             </div>
             <div className="mt-4 flex justify-end">
-              <Link href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(project.location)}`} target="_blank">
-                <Button className="rounded-full bg-[#3b3b98] hover:bg-[#2e2e7a] text-white font-bold px-6 h-11 shadow-lg">
-                  <Navigation className="h-4 w-4 mr-2" /> Navigate to Site
-                </Button>
-              </Link>
+             <Link href={directionsUrl} target="_blank">
+  <Button className="rounded-full bg-[#3b3b98] hover:bg-[#2e2e7a] text-white font-bold px-6 h-11 shadow-lg">
+    <Navigation className="h-4 w-4 mr-2" />
+    Navigate to Site
+  </Button>
+</Link>
             </div>
           </div>
           <div className="bg-white rounded-3xl p-6 md:p-7 shadow-xl border border-gray-100 order-1 lg:order-2">

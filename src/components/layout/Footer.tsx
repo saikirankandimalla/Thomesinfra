@@ -9,7 +9,12 @@ import { Button } from "@/components/ui/button";
 
 export function Footer() {
   const [mounted, setMounted] = React.useState(false);
-
+       const socialLinks = [
+  { icon: Facebook, url: "https://www.facebook.com/THomesInfra.official/" },
+  { icon: Twitter, url: "https://x.com/ThomesInfraOff" },
+  { icon: Instagram, url: "https://www.instagram.com/thomes_infra/" },
+  { icon: Linkedin, url: "https://in.linkedin.com/company/t-homes-infra" },
+];
   React.useEffect(() => {
     setMounted(true);
   }, []);
@@ -35,13 +40,21 @@ export function Footer() {
             <p className="text-white/50 leading-relaxed">
               Leading the way in premium real estate developments in Hyderabad. Delivering excellence and trust since 2014.
             </p>
-            <div className="flex gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="h-10 w-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-amber-500 hover:border-amber-500 hover:text-black transition-all group">
-                  <Icon className="h-5 w-5" />
-                </a>
-              ))}
-            </div>
+    
+
+<div className="flex gap-4">
+  {socialLinks.map(({ icon: Icon, url }, i) => (
+    <a
+      key={i}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="h-10 w-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-amber-500 hover:border-amber-500 hover:text-black transition-all group"
+    >
+      <Icon className="h-5 w-5" />
+    </a>
+  ))}
+</div>
           </div>
 
           <div>
@@ -58,11 +71,13 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-8 text-amber-400">Our Presence</h4>
             <ul className="space-y-4 text-white/50">
-              <li>Spark Vision @ Kondurg</li>
-              <li>Spark City @ Balanagar</li>
-              <li>Valley View @ Kadthal</li>
-              <li>Yadadri Icon @ Raigiri</li>
-              <li>Star City @ Bhongir</li>
+              
+                <li><Link href="/projects/trio-gold" className="hover:text-amber-400 transition-colors">Trio Gold</Link></li>
+                <li><Link href="/projects/tri-disha" className="hover:text-amber-400 transition-colors">Tri Disha</Link></li>
+                <li><Link href="/projects/spark-vision" className="hover:text-amber-400 transition-colors">Spark Vision</Link></li>
+                <li><Link href="/projects/nature-county" className="hover:text-amber-400 transition-colors">Nature County</Link></li>
+            
+          
             </ul>
           </div>
 
