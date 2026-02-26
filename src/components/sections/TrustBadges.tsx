@@ -6,11 +6,11 @@ import { Landmark, ShieldCheck, FileCheck, Building2 } from "lucide-react";
 import Image from "next/image";
 const bankApprovals = [
   { name: "HDFC Bank", logo: "https://cdn.brandfetch.io/idxQAAj1t_/idvhfX_wJX.svg?c=1dxbfHSJFAPEGdCLU4o5B" },
-  { name: "SBI", logo: "https://cdn.brandfetch.io/id-3TXkPxs/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B" },
-  { name: "ICICI Bank", logo: "https://cdn.brandfetch.io/idJHpX8apR/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B" },
-  { name: "LIC HFL", logo: "https://cdn.brandfetch.io/idfctpBSdt/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" },
+  { name: "SBI", logo: "https://cdn.brandfetch.io/id-3TXkPxs/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" },
+  { name: "ICICI Bank", logo: "https://cdn.brandfetch.io/idJHpX8apR/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" },
+  { name: "LIC HFL", logo: "/LICHFL.svg" },
   { name: "IDBI Bank", logo: "https://cdn.brandfetch.io/idCZx_hlov/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" },
-  { name: "AXIS Bank", logo: "https://cdn.brandfetch.io/id78YVtrRp/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B" },
+  { name: "AXIS Bank", logo: "https://cdn.brandfetch.io/id78YVtrRp/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" },
 ];
 
 const certifications = [
