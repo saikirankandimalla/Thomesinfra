@@ -844,7 +844,7 @@ function ContactSection() {
               <div className="space-y-5">
                 <div>
                   <Input
-                    placeholder="Your Name"
+                  
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
@@ -854,7 +854,7 @@ function ContactSection() {
                 <div>
                   <Input
                     type="tel"
-                    placeholder="Phone Number"
+                  
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     required
@@ -864,7 +864,7 @@ function ContactSection() {
                 <div>
                   <Input
                     type="email"
-                    placeholder="Email Address"
+                    
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-14 rounded-xl focus:border-amber-500"
@@ -872,7 +872,7 @@ function ContactSection() {
                 </div>
                 <div>
                   <Textarea
-                    placeholder="Your Message / Requirements"
+                   
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={4}

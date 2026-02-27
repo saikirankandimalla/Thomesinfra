@@ -31,6 +31,7 @@ const navLinks = [
   { name: "India", hasDropdown: true },
   { name: "Dubai", hasDropdown: true },
   { name: "Jumeirah Towers", href: "/jumeirah-towers" },
+  {name: "Blogs", href: "/blogs"},
   { name: "Contact", href: "/contact" },
 ];
 

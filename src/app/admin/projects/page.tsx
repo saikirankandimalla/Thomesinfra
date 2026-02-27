@@ -77,15 +77,14 @@ export default function AdminProjectsPage() {
     }
   };
 
-  // ── file upload (Cloudinary / your own upload API) ────────────────────────
-  // Replace this with your own upload endpoint. Supabase has been removed.
+  // ── file upload ───────────────────────────────────────────────────────────
   const uploadFile = async (file: File): Promise<string> => {
     const fd = new FormData();
     fd.append("file", file);
     const res = await fetch("/api/upload", { method: "POST", body: fd });
     if (!res.ok) throw new Error("Upload failed");
     const json = await res.json();
-    return json.url as string; // your API should return { url: "..." }
+    return json.url as string;
   };
 
   const handleFileUpload = async (
@@ -112,6 +111,7 @@ export default function AdminProjectsPage() {
     setUploading(true);
     try {
       const url = await uploadFile(file);
+      // ✅ Always push a proper { label, value } object — never a plain string
       setFormData((prev) => ({
         ...prev,
         gallery_images: [...prev.gallery_images, { label: file.name, value: url }],
@@ -156,6 +156,7 @@ export default function AdminProjectsPage() {
     const label = proximityLabel.trim();
     const value = proximityValue.trim();
     if (!label || !value) return;
+    // ✅ Always push a proper { label, value } object
     setFormData((p) => ({ ...p, proximity: [...p.proximity, { label, value }] }));
     setProximityLabel("");
     setProximityValue("");
@@ -167,6 +168,7 @@ export default function AdminProjectsPage() {
     const label = galleryLabel.trim();
     const value = galleryValue.trim();
     if (!value) return;
+    // ✅ Always push a proper { label, value } object
     setFormData((p) => ({ ...p, gallery_images: [...p.gallery_images, { label, value }] }));
     setGalleryLabel("");
     setGalleryValue("");
@@ -189,15 +191,36 @@ export default function AdminProjectsPage() {
       toast.error("Please fill in required fields");
       return;
     }
-    const slug = formData.slug || formData.name.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
-    const payload = { ...formData, slug };
+    const slug =
+      formData.slug ||
+      formData.name.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
+
+    // ✅ Ensure gallery_images and proximity are always proper arrays of objects,
+    //    never accidentally stringified. Defensive parse in case of edge cases.
+    const gallery_images = Array.isArray(formData.gallery_images)
+      ? formData.gallery_images.map((img) =>
+          typeof img === "string"
+            ? { label: "", value: img }
+            : { label: img.label ?? "", value: img.value ?? "" }
+        )
+      : [];
+
+    const proximity = Array.isArray(formData.proximity)
+      ? formData.proximity.map((p) =>
+          typeof p === "string"
+            ? { label: p, value: "" }
+            : { label: p.label ?? "", value: p.value ?? "" }
+        )
+      : [];
+
+    const payload = { ...formData, slug, gallery_images, proximity };
 
     try {
       const id = editingProject ? getId(editingProject) : null;
       const res = await fetch(id ? `/api/projects/${id}` : "/api/projects", {
         method: id ? "PATCH" : "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload), // ✅ JSON.stringify keeps objects intact
       });
       if (!res.ok) {
         const err = await res.json();
@@ -229,6 +252,16 @@ export default function AdminProjectsPage() {
   // ── open edit ─────────────────────────────────────────────────────────────
   const openEditModal = (project: any) => {
     setEditingProject(project);
+
+    // ✅ Normalise gallery_images and proximity coming from DB — ensure they are
+    //    always arrays of { label, value } objects, never plain strings.
+    const normaliseKV = (arr: any[]): { label: string; value: string }[] =>
+      (arr ?? []).map((item) =>
+        typeof item === "string"
+          ? { label: "", value: item }
+          : { label: item.label ?? "", value: item.value ?? "" }
+      );
+
     setFormData({
       name: project.name ?? "",
       slug: project.slug ?? "",
@@ -250,8 +283,8 @@ export default function AdminProjectsPage() {
       Highlights: project.Highlights ?? [],
       WhychooseUs: project.WhychooseUs ?? "",
       WhychooseUspoints: project.WhychooseUspoints ?? [],
-      proximity: project.proximity ?? [],
-      gallery_images: project.gallery_images ?? [],
+      proximity: normaliseKV(project.proximity),       // ✅ normalised
+      gallery_images: normaliseKV(project.gallery_images), // ✅ normalised
       youtube_videos: project.youtube_videos ?? [],
       is_featured: project.is_featured ?? false,
     });
@@ -394,6 +427,8 @@ export default function AdminProjectsPage() {
                     <option>DTCP Approved</option>
                     <option>YTDA Approved</option>
                     <option>MUDA Approved</option>
+                    <option>UDA Approved</option>
+                    <option>DSIR Approved</option>
                   </select>
                 </div>
               </div>

@@ -116,22 +116,22 @@ export function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-gray-400 uppercase">Full Name</label>
-                    <Input name="name" required placeholder="John Doe" className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-blue-900 transition-all" />
+                    <Input name="name" required  className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-blue-900 transition-all" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-gray-400 uppercase">Phone Number</label>
-                    <Input name="phone" required placeholder="+91 00000 00000" className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-blue-900 transition-all" />
+                    <Input name="phone" required className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-blue-900 transition-all" />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-400 uppercase">Interest</label>
-                  <Input name="project" placeholder="E.g. Spark Vision Plot" className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-blue-900 transition-all" />
+                  <Input name="project"  className="h-14 rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-blue-900 transition-all" />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-400 uppercase">Message</label>
-                  <Textarea name="message" required placeholder="How can we help you?" className="min-h-[150px] rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-blue-900 transition-all" />
+                  <Textarea name="message" required  className="min-h-[150px] rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:border-blue-900 transition-all" />
                 </div>
 
                 <Button disabled={loading} className="w-full h-16 bg-blue-900 hover:bg-blue-800 text-white rounded-2xl text-lg font-bold shadow-xl shadow-blue-900/20">

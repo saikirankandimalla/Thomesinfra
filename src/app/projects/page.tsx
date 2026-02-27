@@ -15,13 +15,12 @@ import {
 import { Input } from "@/components/ui/input";
 
 const projectImages: Record<string, string> = {
-  "spark-vision": "https://images.unsplash.com/photo-1500382017468-9049fee74a62?auto=format&fit=crop&q=80&w=1200",
-  "spark-city": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800",
-  "valley-view": "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=800",
-  "yadadri-icon": "https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&q=80&w=800",
-  "star-city-phase-4": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800",
-  "royal-enclave": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800",
-  "tech-city": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=800",
+  "spark-vision": "https://thomesinfra.com/wp-content/uploads/2023/11/Spark-Vision-Gallery.jpg?auto=format&fit=crop&q=80&w=800",
+  "spark-city": "https://thomesinfra.com/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-07-at-20.42.51.jpeg?auto=format&fit=crop&q=80&w=800",
+  "valley-view": "https://thomesinfra.com/wp-content/uploads/2024/01/DJI_0896-min-scaled-1.jpg?auto=format&fit=crop&q=80&w=800",
+  "yadadri-icon": "https://thomesinfra.com/wp-content/uploads/2024/04/DJI_0249-1.jpg?auto=format&fit=crop&q=80&w=800",
+  "star-city-phase-4": "https://thomesinfra.com/wp-content/uploads/2024/04/DJI_0261-1.jpg?auto=format&fit=crop&q=80&w=800",
+  
 };
 
 const defaultImage = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800";

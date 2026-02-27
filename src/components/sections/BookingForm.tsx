@@ -65,7 +65,7 @@ export function BookingForm({ plot, onSuccess, onCancel }: BookingFormProps) {
             <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input 
               {...register("name", { required: true })}
-              placeholder="John Doe"
+              // placeholder="John Doe"
               className="h-12 pl-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white transition-all font-bold"
             />
           </div>
@@ -79,7 +79,7 @@ export function BookingForm({ plot, onSuccess, onCancel }: BookingFormProps) {
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input 
                 {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-                placeholder="john@example.com"
+               
                 className="h-12 pl-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white transition-all font-bold"
               />
             </div>
@@ -90,7 +90,7 @@ export function BookingForm({ plot, onSuccess, onCancel }: BookingFormProps) {
               <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input 
                 {...register("phone", { required: true })}
-                placeholder="+91 XXXXX XXXXX"
+              
                 className="h-12 pl-12 rounded-xl bg-gray-50 border-gray-200 focus:bg-white transition-all font-bold"
               />
             </div>
@@ -103,7 +103,7 @@ export function BookingForm({ plot, onSuccess, onCancel }: BookingFormProps) {
             <MessageSquare className="absolute left-4 top-4 h-4 w-4 text-gray-400" />
             <Textarea 
               {...register("message")}
-              placeholder="I'm interested in this plot..."
+              
               className="min-h-[100px] pl-12 pt-4 rounded-xl bg-gray-50 border-gray-200 focus:bg-white transition-all font-bold resize-none"
             />
           </div>

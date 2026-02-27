@@ -162,7 +162,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       <Input
         name="name"
         required
-        placeholder="John Doe"
+      
         value={formData.name}
         onChange={(e) =>
           setFormData({ ...formData, name: e.target.value })
@@ -180,7 +180,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       <Input
         name="phone"
         required
-        placeholder="+91 00000 00000"
+        
         value={formData.phone}
         onChange={(e) =>
           setFormData({ ...formData, phone: e.target.value })
@@ -199,7 +199,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     <Input
       name="project"
-      placeholder="E.g. Spark Vision Plot"
+     
       value={formData.project}
       onChange={(e) =>
         setFormData({ ...formData, project: e.target.value })
@@ -217,7 +217,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     <Textarea
       name="message"
       required
-      placeholder="I'm interested in..."
+    
+      
       value={formData.message}
       onChange={(e) =>
         setFormData({ ...formData, message: e.target.value })

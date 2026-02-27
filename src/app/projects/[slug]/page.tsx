@@ -1132,12 +1132,7 @@ const defaultVideos = [
   "https://www.youtube.com/watch?v=2GBiSc2XpeY",
 ];
 const projectImages: Record<string, string[]> = {
-  "spark-vision": [
-    "https://images.unsplash.com/photo-1500382017468-9049fee74a62?auto=format&fit=crop&q=80&w=1600",
-    "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=1600",
-    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1600",
-    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1600",
-  ],
+
   default: [
     "https://thomesinfra.com/wp-content/uploads/2024/05/DJI_0732-2-1-scaled.jpg",
     "https://thomesinfra.com/wp-content/uploads/2024/05/DJI_0674-2-1-scaled.jpg",
@@ -1459,11 +1454,11 @@ const directionsUrl = coords
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#3b3b98] text-sm font-medium placeholder:text-gray-400 transition-colors" />
+                <input required  value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#3b3b98] text-sm font-medium placeholder:text-gray-400 transition-colors" />
               </div> 
               <div className="relative">
                 <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input required type="tel" placeholder="Phone Number" value={formData.phone} onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))} className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#3b3b98] text-sm font-medium placeholder:text-gray-400 transition-colors" />
+                <input required type="tel"  value={formData.phone} onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))} className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#3b3b98] text-sm font-medium placeholder:text-gray-400 transition-colors" />
               </div>
               <div className="relative">
                 <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />

@@ -86,7 +86,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <div className="space-y-4">
             <Input
               type="password"
-              placeholder="Enter admin password"
+             
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && handleLogin()}
@@ -157,7 +157,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <div className="flex items-center justify-between">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input placeholder="Search..." className="pl-10 w-64 rounded-full bg-gray-100 border-0" />
+              <Input className="pl-10 w-64 rounded-full bg-gray-100 border-0" />
             </div>
             <div className="flex items-center gap-4">
               <button className="relative p-2 text-gray-600 hover:bg-gray-100 rounded-full" type="button" title="Notifications">
