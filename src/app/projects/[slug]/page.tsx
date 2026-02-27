@@ -1280,14 +1280,16 @@ function StatsSection({ project, onScrollToMap }: { project: IProject; onScrollT
             ))}
           </div>
           <div className="relative mt-6 lg:mt-0">
-            <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl border-4 border-white">
-              {project.layout_image ? (
-                <NextImage src={project.layout_image} alt="Layout" fill className="object-cover" />
-              ) : (
-                <NextImage src="https://thomesinfra.com/wp-content/uploads/2023/11/DJI_0474.jpg"alt="Layout" fill className="object-cover" />
-      
-              )}
-            </div>
+           <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+  <NextImage
+    src={project.layout_image || "https://thomesinfra.com/wp-content/uploads/2023/11/DJI_0474.jpg"}
+    alt="Layout"
+    width={0}
+    height={0}
+    sizes="100vw"
+    className="w-full h-auto"
+  />
+</div>
             <div className="absolute -bottom-4 -right-2 md:-bottom-5 md:-right-5 bg-white rounded-2xl px-4 md:px-5 py-2 md:py-3 shadow-[0_10px_30px_rgba(0,0,0,0.2)] border border-gray-100 flex items-center gap-2 md:gap-3 z-10">
               <ShieldCheck className="h-6 w-6 md:h-8 md:w-8 text-emerald-500" />
               <div>
@@ -1458,7 +1460,7 @@ const directionsUrl = coords
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#3b3b98] text-sm font-medium placeholder:text-gray-400 transition-colors" />
-              </div>
+              </div> 
               <div className="relative">
                 <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input required type="tel" placeholder="Phone Number" value={formData.phone} onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))} className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#3b3b98] text-sm font-medium placeholder:text-gray-400 transition-colors" />

@@ -90,9 +90,9 @@ const team = [
 
 const stats = [
   { label: "Year Established", value: "2014", icon: History },
-  { label: "Acres Developed", value: "500+", icon: MapPin },
-  { label: "Happy Clients", value: "1000+", icon: Users },
-  { label: "Projects Delivered", value: "20+", icon: Building2 },
+  { label: "Acres Developed", value: "1000+", icon: MapPin },
+  { label: "Happy Clients", value: "10000+", icon: Users },
+  { label: "Projects Delivered", value: "25+", icon: Building2 },
 ];
 
 
@@ -137,9 +137,9 @@ const values = [
 const timeline = [
   { year: "2014", title: "Company Founded", description: "T Homes Infra Pvt Ltd established in Hyderabad with a vision to deliver quality real estate." },
   { year: "2015", title: "Star City Phase 1", description: "Successfully launched and delivered our first project in Bhongir." },
-  { year: "2017", title: "500+ Plots Sold", description: "Crossed the milestone of 500 happy customers across multiple projects." },
+  { year: "2017", title: "1000+ Plots Sold", description: "Crossed the milestone of 500 happy customers across multiple projects." },
   { year: "2019", title: "Expansion to Yadadri", description: "Expanded operations to Yadadri region with YTDA approved projects." },
-  { year: "2021", title: "1000+ Families", description: "Reached 1000+ satisfied families and 20+ successful project deliveries." },
+  { year: "2021", title: "10000+ Families", description: "Reached 10000+ satisfied families and 25+ successful project deliveries." },
   { year: "2024", title: "Premium Ventures", description: "Launching premium projects in IT corridors and metro-connected areas." },
 ];
 
@@ -617,7 +617,7 @@ who feel secure and confident in their investment.
             Ready to Start Your Investment Journey?
           </h2>
           <p className="text-xl text-black/70 mb-10 max-w-2xl mx-auto">
-            Join 1000+ families who have trusted T Homes Infra for their real estate investments.
+            Join 10000+ families who have trusted T Homes Infra for their real estate investments.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/projects">
