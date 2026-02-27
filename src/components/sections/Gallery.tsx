@@ -8,21 +8,21 @@ import { Quote, Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Rajesh Kumar",
+    name: "Asgar Ali Sayed",
     role: "IT Professional",
-    content: "Investing with T Homes was the best decision for my family. The DTCP approval gave me peace of mind, and the appreciation has been excellent.",
+    content: "Thomes conducts their weekly meeting here every Thursday to update their Business Associates regarding the Existing Ventures, New Ventures, Business Plans for upliftment of all the Associates.",
     rating: 5,
   },
   {
-    name: "Sowmya Reddy",
+    name: "sai prabhakar",
     role: "Business Owner",
-    content: "Transparent process and very professional team. They helped me find the perfect plot in Spark City. Highly recommended!",
+    content: "A place for motivation and achieving success in life. Employment creation and motivating people to invest in lands for their well being and future.",
     rating: 5,
   },
   {
-    name: "Arun Varma",
-    role: "NRI Investor",
-    content: "The virtual tour and 3D layout options made it easy for me to invest from abroad. T Homes is a name you can trust.",
+    name: "Vinay Goud",
+    role: "Investor",
+    content: "Top most nd fastest growing Corporate Real estate company in Hyd",
     rating: 5,
   },
 ];
@@ -46,7 +46,7 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-bold text-gray-900"
           >
-            Trusted by <span className="text-blue-900">1000+ Families</span>
+            Trusted by <span className="text-blue-900">10000+ Families</span>
           </motion.h2>
         </div>
 

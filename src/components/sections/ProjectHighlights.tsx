@@ -11,8 +11,8 @@ import {
 
 const stats = [
   { label: "Years of Trust", value: "10+", icon: History },
-  { label: "Acres Developed", value: "500+", icon: MapIcon },
-  { label: "Happy Clients", value: "1000+", icon: Users },
+  { label: "Acres Developed", value: "1000+", icon: MapIcon },
+  { label: "Happy Clients", value: "10000+", icon: Users },
   { label: "Success Rate", value: "100%", icon: Star },
 ];
 

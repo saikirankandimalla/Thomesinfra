@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { Users, History, Award, Map as MapIcon } from "lucide-react";
 
 const stats = [
-  { label: "Completed Projects", value: "20+", icon: History },
-  { label: "Acres Developed", value: "500+", icon: MapIcon },
+  { label: "Completed Projects", value: "25+", icon: History },
+  { label: "Acres Developed", value: "1000+", icon: MapIcon },
   { label: "Happy Clients", value: "10K+", icon: Users },
   { label: "Strong Teams", value: "2K+", icon: Award },
 ];
@@ -126,7 +126,7 @@ grow stronger over time.
                   Building Futures Together
                 </div>
                 <div className="text-sm opacity-80">
-                  Trusted by 1000+ Families
+                  Trusted by 10000+ Families
                 </div>
               </motion.div>
             </motion.div>
