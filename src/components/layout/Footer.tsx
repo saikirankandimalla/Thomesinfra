@@ -64,7 +64,7 @@ export function Footer() {
               <li><Link href="/projects" className="hover:text-amber-400 transition-colors">Our Projects</Link></li>
               <li><Link href="/projects?filter=ongoing" className="hover:text-amber-400 transition-colors">Ongoing Projects</Link></li>
               <li><Link href="/contact" className="hover:text-amber-400 transition-colors">Contact Us</Link></li>
-              <li><Link href="/admin" className="hover:text-amber-400 transition-colors">Admin Portal</Link></li>
+              {/* <li><Link href="/admin" className="hover:text-amber-400 transition-colors">Admin Portal</Link></li> */}
             </ul>
           </div>
 
