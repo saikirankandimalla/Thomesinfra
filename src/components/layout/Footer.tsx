@@ -239,10 +239,10 @@ export function Footer() {
           {/* LEFT: Socials */}
           <div className="flex items-center gap-2 flex-shrink-0">
             {([
-              { Icon: Facebook,  color: "#1877F2", href: "#" },
-              { Icon: Youtube,   color: "#FF0000", href: "#" },
-              { Icon: Instagram, color: "#E1306C", href: "#" },
-              { Icon: Linkedin,  color: "#0A66C2", href: "#" },
+              { Icon: Facebook,  color: "#1877F2", href: "https://www.facebook.com/THomesInfra.official" },
+              { Icon: Youtube,   color: "#FF0000", href: "https://www.youtube.com/@THOMESINFRAPRIVATELIMITED" },
+              { Icon: Instagram, color: "#E1306C", href: "https://www.instagram.com/thomes_infra?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" },
+              { Icon: Linkedin,  color: "#0A66C2", href: "https://in.linkedin.com/company/t-homes-infra" },
             ] as const).map(({ Icon, color, href }, i) => (
               <a
                 key={i}
