@@ -249,3 +249,57 @@ Edit
 MX	@	5	mx1.hostinger.com	3600	
 Delete
 Edit
+
+Type
+Name
+Priority
+Content
+TTL
+CNAME	hostingermail-c._domainkey	0	hostingermail-c.dkim.mail.hostinger.com	300	
+Delete
+Edit
+CNAME	hostingermail-b._domainkey	0	hostingermail-b.dkim.mail.hostinger.com	300	
+Delete
+Edit
+CNAME	hostingermail-a._domainkey	0	hostingermail-a.dkim.mail.hostinger.com	300	
+Delete
+Edit
+CNAME	www	0	www.thomesinfra.com.cdn.hstgr.net	300	
+Delete
+Edit
+AAAA	thomes	0	2a02:4780:11:1978:0:10c7:62ca:2	1800	
+Delete
+Edit
+A	thomes	0	82.25.107.20	1800	
+Delete
+Edit
+CNAME	autodiscover	0	autodiscover.mail.hostinger.com	300	
+Delete
+Edit
+CNAME	autoconfig	0	autoconfig.mail.hostinger.com	300	
+Delete
+Edit
+TXT	_dmarc	0	"v=DMARC1; p=none"	3600	
+Delete
+Edit
+ALIAS	@	0	thomesinfra.com.cdn.hstgr.net	300	
+Delete
+Edit
+TXT	@	0	"v=spf1 include:_spf.google.com ~all"	3600	
+Delete
+Edit
+MX	@	10	ALT3.ASPMX.L.GOOGLE.COM	3600	
+Delete
+Edit
+MX	@	10	ALT4.ASPMX.L.GOOGLE.COM	3600	
+Delete
+Edit
+MX	@	5	ALT1.ASPMX.L.GOOGLE.COM	3600	
+Delete
+Edit
+MX	@	5	ALT2.ASPMX.L.GOOGLE.COM	3600	
+Delete
+Edit
+MX	@	1	ASPMX.L.GOOGLE.COM	3600	
+Delete
+Edit
