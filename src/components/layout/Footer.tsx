@@ -85,10 +85,7 @@ const QUICK_LINKS = [
   { label: "Ongoing Projects",   href: "/projects?filter=ongoing" },
   { label: "Completed Projects", href: "/projects?filter=completed" },
   { label: "Contact Us",         href: "/contact" },
-  { label: "Admin Portal",       href: "/admin" },
-  { label: "Privacy Policy",     href: "/privacy-policy" },
-  { label: "Terms & Conditions", href: "/terms" },
-];
+]
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 function LiveBadge() {
@@ -374,8 +371,8 @@ export function Footer() {
                       Icon: MapPin,
                       text: "Flat No: 8-2-120/77/4B, 3rd Floor, NVR Towers, Road No. 2, Banjara Hills, Hyderabad – 500034",
                     },
-                    { Icon: Phone, text: "+91 98490 00000" },
-                    { Icon: Mail,  text: "hello@thomesinfra.com" },
+                    { Icon: Phone, text: "+919032939753" },
+                    { Icon: Mail,  text: "info@thomesinfra.com" },
                   ].map(({ Icon, text }) => (
                     <div key={text} className="flex items-start gap-3 text-sm" style={{ color: "#6B7A9F" }}>
                       <div
