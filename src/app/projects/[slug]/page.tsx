@@ -1049,14 +1049,14 @@ interface IProject {
   approval_type: string;
   is_featured: boolean;
   hero_image?: string;
-  gallery_images?: any;               // accept any shape from DB
+  gallery_images?: any;           
   amenities: string[];
   proximity: { label: string; value: string; icon?: string }[];
   layout_image?: string;
   google_embed_url?: string;
   Highlights: string[];
   brochure_url?: string;
-  youtube_videos?: any;               // DB stores as "" (empty string) or string[]
+  youtube_videos?: any;               
   WhychooseUs: string;
   WhychooseUspoints: string[];
 }
@@ -1669,13 +1669,19 @@ export default function ProjectDetailPage() {
     });
   };
 
-  const handleBrochureClick = () => {
-    if (localStorage.getItem("verifiedPhone")) {
-      if (project?.brochure_url) router.push(project.brochure_url);
+  // const handleBrochureClick = () => {
+  //   if (localStorage.getItem("verifiedPhone")) {
+  //     if (project?.brochure_url) router.push(project.brochure_url);
+  //     else if (project?.slug) router.push(`/brochures/${project.slug}`);
+  //   } else {
+  //     startOTPVerification();
+  //   }
+  // };
+   const handleBrochureClick = () => {
+   if (project?.brochure_url){ 
+    router.push(project.brochure_url);}
       else if (project?.slug) router.push(`/brochures/${project.slug}`);
-    } else {
-      startOTPVerification();
-    }
+    
   };
 
   if (loading) {

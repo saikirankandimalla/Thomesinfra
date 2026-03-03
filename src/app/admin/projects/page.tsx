@@ -299,8 +299,6 @@ export default function AdminProjectsPage() {
     setProximityLabel(""); setProximityValue("");
     setGalleryLabel(""); setGalleryValue(""); setYoutubeInput("");
   };
-
-  // ── render ────────────────────────────────────────────────────────────────
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">

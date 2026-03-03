@@ -31,19 +31,19 @@ const team = [
    {
     name: "N.Vykunta Rao",
     role: "Managing Director",
-    image: "https://thomesinfra.com/wp-content/uploads/2026/01/Untitled-1-scaled-e1760606533590.webp",
+    image: "https://mediumpurple-sandpiper-111248.hostingersite.com/wp-content/uploads/2026/01/Untitled-1-scaled-e1760606533590.webp",
     description: "Leading with vision and integrity to build a legacy of trust and quality."
   },
    {
     name: "GAMPA NAGESHWER RAO",
     role: "chief mentor",
-    image: "https://thomesinfra.com/wp-content/uploads/2023/11/Gampa-2.png",
+    image: "https://mediumpurple-sandpiper-111248.hostingersite.com/wp-content/uploads/2025/10/NRJ0642-scaled.jpg",
     description: "Guiding strategic vision with experience, clarity, and disciplined oversight."
   },
   {
    name: "B.RAJASHEKAR",
     role: "Vice President",
-    image: "https://thomesinfra.com/wp-content/uploads/2026/01/1.png",
+    image: "https://mediumpurple-sandpiper-111248.hostingersite.com/wp-content/uploads/2026/01/1.png",
     description: "Crafting brand stories and building lasting relationships."
   }
  
@@ -377,7 +377,7 @@ while ensuring its safety, transparency and value.
               <div className="lg:col-span-5">
                 <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl group">
                   <Image
-                    src="https://thomesinfra.com/wp-content/uploads/2025/10/NRJ0403-scaled.jpg"
+                    src="https://mediumpurple-sandpiper-111248.hostingersite.com/wp-content/uploads/2025/10/NRJ0393-scaled.jpg"
                     alt="Mr.Vykunta Rao. - MD"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -469,7 +469,7 @@ who feel secure and confident in their investment.
               <div className="lg:col-span-5 order-1 lg:order-2">
                 <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl group">
                   <Image
-                    src="https://thomesinfra.com/wp-content/uploads/2025/10/NRJ0643-scaled.jpg"
+                    src="https://mediumpurple-sandpiper-111248.hostingersite.com/wp-content/uploads/2025/10/NRJ0656-scaled.jpg"
                     alt="Gampa Nageshwer Rao - Chief Mentor"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

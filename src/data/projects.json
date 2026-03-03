@@ -6,8 +6,8 @@
       {"name": "Nature County", "slug": "-nature-county", "status": "Ongoing", "location": "Peddakandukur, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2024/12/DJI_0083-copy-scaled.jpg"},
       {"name": "Spark Vision", "slug": "spark-vision", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2025/11/DJI_0258-1024x683.jpg"},
       {"name": "Bahupeta", "slug": "th-10-avp-bahupeta-dtcp", "status": "Ongoing", "location": "Bahupeta, Telangana", "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=200&q=80"},
-      {"name": "Cholleru", "slug": "th-15-avp-cholleru-phase-1&2-dtcp", "status": "Ongoing", "location": "Cholleru, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/DSC02217.jpg"},
-      {"name": "Village Vibe Resort", "slug": "TH-20 AVP-VILLAGE VIBE RESORT CHOLLERU-DTCP", "status": "Ongoing", "location": "Cholleru, Telangana", "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=200&q=80"},
+      {"name": "Cholleru", "slug": "avp-cholleru", "status": "Ongoing", "location": "Cholleru, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/DSC02217.jpg"},
+      {"name": "Village Vibe Resort", "slug": "avp-village-vibe-resort", "status": "Ongoing", "location": "Cholleru, Telangana", "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=200&q=80"},
       {"name": "Valley View", "slug": "valley-view", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=200&q=80"},
       {"name": "Spark City", "slug": "spark-city", "status": "Ongoing", "location": "Hyderabad, Telangana", "image": "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=200&q=80"},
 
@@ -25,7 +25,7 @@
       {"name": "Ala Vaikuntapuram", "slug": "TH-13 AVP @ KONDURG", "status": "Completed", "location": "Kondurg, Telangana", "image": "https://thomesinfra.com/wp-content/uploads/2023/11/Kondurg-1-964-X-545.jpg"}
     ],
     "Gujarat": [
-      {"name": "Visionary Vista", "slug": "TH-22- VISIONARYVISTA-DHOLERA SMART CITY", "status": "Ongoing", "location": "Dholera, Gujarat", "image": "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=200&q=80"}
+      {"name": "Visionary Vista", "slug":"visionaryvista-smart-city", "status": "Ongoing", "location": "Dholera, Gujarat", "image": "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=200&q=80"}
     ]
   },
   "Dubai": {

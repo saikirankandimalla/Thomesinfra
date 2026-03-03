@@ -53,7 +53,13 @@ const ProjectSchema: Schema = new Schema(
     Highlights:        [{ type: String }],
     WhychooseUspoints: [{ type: String }],
     youtube_videos:    [{ type: String }],
-    gallery_images:    [{ type: String }],   // plain strings — matches DB
+   gallery_images: [
+  {
+    label: { type: String, default: "" },
+    value: { type: String, required: true },
+  }
+],
+ // plain strings — matches DB
     proximity: [{ label: { type: String }, value: { type: String } }],
   },
   { timestamps: true }

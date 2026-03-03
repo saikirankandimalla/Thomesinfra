@@ -47,15 +47,12 @@ function getImage(post: WPPost): string {
     "https://thomesinfra.com/wp-content/uploads/2023/11/DJI_0474.jpg"
   );
 }
-
 function getCategory(post: WPPost): string {
   return post._embedded?.["wp:term"]?.[0]?.[0]?.name ?? "Real Estate";
 }
-
 function getExcerpt(post: WPPost, len = 140): string {
   return stripHtml(post.excerpt.rendered).slice(0, len) + "…";
 }
-
 /* ─── Featured Hero Card ──────────────────────────────────────── */
 function HeroCard({ post }: { post: WPPost }) {
   return (
