@@ -13,7 +13,7 @@ import {
   ShieldCheck, CheckCircle 
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { useSearchParams } from "next/navigation";
+
 
 const projectImages: Record<string, string> = {
   "spark-vision": "https://thomesinfra.com/wp-content/uploads/2023/11/Spark-Vision-Gallery.jpg?auto=format&fit=crop&q=80&w=800",
@@ -46,10 +46,9 @@ export default function ProjectsPage() {
       setLoading(false);
     }
   }
-  const searchParams = useSearchParams();
-
 useEffect(() => {
-  const urlFilter = searchParams.get("filter");
+  const params = new URLSearchParams(window.location.search);
+  const urlFilter = params.get("filter");
 
   if (
     urlFilter === "all" ||
@@ -58,12 +57,7 @@ useEffect(() => {
   ) {
     setFilter(urlFilter);
   }
-}, [searchParams]);
-  React.useEffect(() => {
-    setMounted(true);
-    fetchProjects();
-  }, []);
-
+}, []);
   if (!mounted) {
     return (
       <main className="min-h-screen bg-gray-50">
