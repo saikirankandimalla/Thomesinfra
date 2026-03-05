@@ -8,15 +8,11 @@ import {
   Calendar,
   Clock,
   ArrowLeft,
-  Share2,
-  BookOpen,
   Tag,
 } from "lucide-react";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-
-/* TYPES */
 
 type WPPost = {
   id: number;
@@ -27,6 +23,9 @@ type WPPost = {
   excerpt: { rendered: string };
   _embedded?: any;
 };
+
+const DEFAULT_IMAGE =
+"https://thomestowers.com/wp-content/uploads/2026/02/Entrance-Gate-Area-Day-NEW-1.webp";
 
 /* HELPERS */
 
@@ -50,7 +49,7 @@ function readingTime(text: string) {
 function getImage(post: WPPost) {
   return (
     post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-    "/default-blog.jpg"
+    DEFAULT_IMAGE
   );
 }
 
@@ -62,21 +61,22 @@ function getCategory(post: WPPost) {
   return post?._embedded?.["wp:term"]?.[0]?.[0]?.name || "Blog";
 }
 
-/* PAGE */
-
 export default function BlogPostPage() {
+
   const params = useParams();
   const slug = params?.slug as string;
 
   const [post, setPost] = useState<WPPost | null>(null);
   const [related, setRelated] = useState<WPPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [imageSrc,setImageSrc] = useState(DEFAULT_IMAGE)
 
   useEffect(() => {
     if (!slug) return;
 
     async function loadPost() {
       try {
+
         const res = await fetch(
           `https://mediumpurple-sandpiper-111248.hostingersite.com/wp-json/wp/v2/posts?slug=${slug}&_embed`
         );
@@ -84,7 +84,9 @@ export default function BlogPostPage() {
         const data = await res.json();
 
         if (data.length) {
-          setPost(data[0]);
+
+          setPost(data[0])
+          setImageSrc(getImage(data[0]))
 
           const rel = await fetch(
             "https://mediumpurple-sandpiper-111248.hostingersite.com/wp-json/wp/v2/posts?_embed&per_page=4"
@@ -95,7 +97,9 @@ export default function BlogPostPage() {
           setRelated(
             relData.filter((p: WPPost) => p.slug !== slug).slice(0, 3)
           );
+
         }
+
       } catch (err) {
         console.error(err);
       }
@@ -104,11 +108,14 @@ export default function BlogPostPage() {
     }
 
     loadPost();
+
   }, [slug]);
 
   if (loading)
     return (
-      <div className="text-center py-24 text-lg">Loading article...</div>
+      <div className="text-center py-24 text-lg">
+        Loading article...
+      </div>
     );
 
   if (!post)
@@ -130,13 +137,11 @@ export default function BlogPostPage() {
       <div className="relative h-[55vh] w-full overflow-hidden">
 
         <Image
-          src={getImage(post)}
+          src={imageSrc}
           alt={post.title.rendered}
           fill
           className="object-cover"
-          onError={(e:any)=>{
-            e.target.src="/default-blog.jpg"
-          }}
+          onError={() => setImageSrc(DEFAULT_IMAGE)}
         />
 
         <div className="absolute inset-0 bg-black/50" />
@@ -173,8 +178,6 @@ export default function BlogPostPage() {
       {/* CONTENT */}
 
       <div className="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-12">
-
-        {/* ARTICLE */}
 
         <article className="lg:col-span-2">
 
@@ -220,7 +223,9 @@ export default function BlogPostPage() {
             Back to blogs
           </Link>
 
-          <h3 className="font-semibold mb-4">Related Articles</h3>
+          <h3 className="font-semibold mb-4">
+            Related Articles
+          </h3>
 
           <div className="space-y-4">
 
@@ -228,7 +233,7 @@ export default function BlogPostPage() {
 
               const image =
                 r?._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-                "/default-blog.jpg";
+                DEFAULT_IMAGE;
 
               return(
 
@@ -244,6 +249,9 @@ export default function BlogPostPage() {
                     width={80}
                     height={60}
                     className="rounded-lg object-cover"
+                    onError={(e:any)=>{
+                      e.target.src = DEFAULT_IMAGE
+                    }}
                   />
 
                   <p
